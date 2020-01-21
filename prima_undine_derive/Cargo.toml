@@ -1,0 +1,15 @@
+[package]
+name = "prima_undine_derive"
+version = "0.1.0"
+authors = ["Koichi Akabe <vbkaisetsu@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+quote = "1.0"
+syn = { version = "1.0", features=["full"] }
+
+[lib]
+proc-macro = true
+
+[dev-dependencies]
+prima_undine = { version = "0.1.0", path = "../prima_undine" }

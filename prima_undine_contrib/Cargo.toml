@@ -1,0 +1,8 @@
+[package]
+name = "prima_undine_contrib"
+version = "0.1.0"
+authors = ["Koichi Akabe <vbkaisetsu@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+prima_undine = { version = "0.1.0", path = "../prima_undine" }

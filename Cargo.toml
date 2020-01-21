@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "prima_undine",
+    "prima_undine_derive",
+    "prima_undine_contrib",
+]

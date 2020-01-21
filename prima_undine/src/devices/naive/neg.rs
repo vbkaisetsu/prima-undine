@@ -1,0 +1,19 @@
+define_naive_fw_x_impl!(NegFwImpl, |x: f32| -x);
+
+#[cfg(test)]
+mod tests {
+    use crate::devices as D;
+    use crate::functions::BasicFunctions;
+
+    #[test]
+    fn check_neg_fw() {
+        let x_data = vec![1000., 100., 10., 1., 0.1, 0.01, 0.001, 0.0001];
+        let y_data = vec![-1000., -100., -10., -1., -0.1, -0.01, -0.001, -0.0001];
+        let dev = D::Naive::new();
+        let x = dev.new_tensor_by_slice(shape![2, 2; 2], &x_data);
+        let mut y = dev.new_tensor(shape![2, 2; 2]);
+        y.alloc();
+        dev.call_fw_impl("neg_fw_impl", &[&x], &[], &[], &mut [&mut y]);
+        assert_vector_ulps_eq!(y_data, y.to_vec());
+    }
+}

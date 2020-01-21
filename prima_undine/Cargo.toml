@@ -1,0 +1,18 @@
+[package]
+name = "prima_undine"
+version = "0.1.0"
+authors = ["Koichi Akabe <vbkaisetsu@gmail.com>"]
+edition = "2018"
+
+[dev-dependencies]
+approx = "0.3"
+prima_undine_derive = { version = "0.1.0", path = "../prima_undine_derive" }
+
+[dependencies]
+prima_undine_derive = { version = "0.1.0", optional = true, path = "../prima_undine_derive" }
+rand = "0.7"
+rand_distr = "0.2.2"
+serde = { version = "1.0", features = ["derive"] }
+
+[features]
+derive = ["prima_undine_derive"]
