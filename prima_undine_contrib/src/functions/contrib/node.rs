@@ -26,6 +26,19 @@ impl<'arg, 'dev> ContribFunctions for Node<'arg, 'dev> {
         }
     }
 
+    fn dropout_dim(&self, dim: u32, rate: f32, enabled: bool) -> Self {
+        if !enabled {
+            1. * self
+        } else if rate >= 1. {
+            0. * self
+        } else {
+            let p = 1. - rate;
+            let rb_shape = self.shape().resize_dim(dim, 1);
+            let rb = self.device().random_bernoulli(rb_shape, p);
+            (1. / p) * self * Self::from(rb.broadcast(dim, self.shape()[dim]))
+        }
+    }
+
     fn slice_sum(xs: &[&Self]) -> Self {
         assert!(xs.len() != 0);
         let mut ret = Self::from(xs[0].device().new_tensor_by_constant(xs[0].shape(), 0.));
