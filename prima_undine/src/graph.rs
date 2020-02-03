@@ -205,6 +205,10 @@ impl<'arg, 'dev> Node<'arg, 'dev> {
         self.data.op.rets[self.data.vid].value.borrow()
     }
 
+    pub fn inner_gradient(&self) -> Ref<Tensor> {
+        self.data.op.rets[self.data.vid].gradient.borrow()
+    }
+
     pub fn device(&self) -> &'dev Device<'dev> {
         self.data.op.operator.device()
     }
