@@ -34,6 +34,18 @@ impl<'arg, 'dev> BasicFunctions for Tensor<'dev> {
 
     // basic
 
+    fn pow<T: Borrow<Self>>(&self, k: T) -> Self {
+        self.device().powf_fw(self, k.borrow())
+    }
+
+    fn powf(&self, k: f32) -> Self {
+        self.device().powf_const_r_fw(self, k)
+    }
+
+    fn powi(&self, k: i32) -> Self {
+        self.device().powi_fw(self, k)
+    }
+
     fn sqrt(&self) -> Self {
         self.device().sqrt_fw(self)
     }

@@ -142,7 +142,7 @@ impl<'dev> BasicDeviceFunctions for Device<'dev> {
         assert!(x.device() == self);
         let mut y = self.new_tensor(x.shape);
         y.alloc();
-        self.call_fw_impl("powi_fw", &[x], &[k as u32], &[], &mut [&mut y]);
+        self.call_fw_impl("powi_fw_impl", &[x], &[k as u32], &[], &mut [&mut y]);
         y
     }
 
@@ -162,7 +162,7 @@ impl<'dev> BasicDeviceFunctions for Device<'dev> {
         assert!(x.shape == gx.shape);
         assert!(y.shape == gy.shape);
         assert!(x.shape == y.shape);
-        self.call_bw_impl("powi_bw", &[x], &[y], &[gy], &[k as u32], &[], gx);
+        self.call_bw_impl("powi_bw_impl", &[x], &[y], &[gy], &[k as u32], &[], gx);
     }
 
     define_bw_x!(sqrt_bw, "sqrt_bw_impl");

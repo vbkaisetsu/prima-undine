@@ -31,8 +31,8 @@ mod neg;
 mod parameter;
 //mod permute_dims;
 mod pick;
-//mod pow;
-//mod pown;
+mod powf;
+mod powi;
 mod prelu;
 //mod random;
 mod reshape;
@@ -68,6 +68,11 @@ pub use sub::{Sub, SubConstL, SubConstR, SubScalarL, SubScalarR};
 // basic
 
 pub use abs::Abs;
+pub use powf::Pow;
+pub use powf::PowConstR;
+pub use powf::PowScalarL;
+pub use powf::PowScalarR;
+pub use powi::Powi;
 pub use sqrt::Sqrt;
 
 // trigonometric

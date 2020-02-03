@@ -39,6 +39,35 @@ impl<'arg, 'dev> BasicFunctions for Node<'arg, 'dev> {
 
     // basic
 
+    fn pow<T: Borrow<Self>>(&self, k: T) -> Self {
+        let k = k.borrow();
+        if self.inner_value().shape.is_scalar() {
+            Node::create(op::PowScalarL::new(self.device()), &[k, self])
+                .pop()
+                .unwrap()
+        } else if k.inner_value().shape.is_scalar() {
+            Node::create(op::PowScalarR::new(self.device()), &[self, k])
+                .pop()
+                .unwrap()
+        } else {
+            Node::create(op::Pow::new(self.device()), &[self, k])
+                .pop()
+                .unwrap()
+        }
+    }
+
+    fn powf(&self, k: f32) -> Self {
+        Node::create(op::PowConstR::new(self.device(), k), &[self])
+            .pop()
+            .unwrap()
+    }
+
+    fn powi(&self, k: i32) -> Self {
+        Node::create(op::Powi::new(self.device(), k), &[self])
+            .pop()
+            .unwrap()
+    }
+
     fn sqrt(&self) -> Self {
         Node::create(op::Sqrt::new(self.device()), &[self])
             .pop()

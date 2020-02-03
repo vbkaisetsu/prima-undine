@@ -24,9 +24,9 @@ where
 
     // basic
 
-    //fn pow<T: Borrow<Self>>(&self, k: T) -> Self;
-    //fn powf(&self, k: u32) -> Self;
-    //fn powi(&self, k: i32) -> Self;
+    fn pow<T: Borrow<Self>>(&self, k: T) -> Self;
+    fn powf(&self, k: f32) -> Self;
+    fn powi(&self, k: i32) -> Self;
     fn sqrt(&self) -> Self;
     fn abs(&self) -> Self;
 
