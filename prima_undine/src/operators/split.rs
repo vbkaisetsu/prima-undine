@@ -36,7 +36,7 @@ impl<'arg, 'dev> Operator<'arg, 'dev> for Split<'dev> {
         let skip = total / self.n;
         for i in 0..self.n {
             self.device()
-                .slice_bw(gy[0], self.dim, i * skip, &mut *gx[0].borrow_mut());
+                .slice_bw(gy[i as usize], self.dim, i * skip, &mut *gx[0].borrow_mut());
         }
     }
 }
